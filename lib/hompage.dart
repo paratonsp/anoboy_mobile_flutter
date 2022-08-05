@@ -10,15 +10,16 @@ class WebViewExample extends StatefulWidget {
 }
 
 class WebViewExampleState extends State<WebViewExample> {
+  String link = "62.182.83.93";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: InAppWebView(
-        initialUrlRequest: URLRequest(url: Uri.parse("https://62.182.83.93/")),
+        initialUrlRequest: URLRequest(url: Uri.parse("https://$link")),
         onEnterFullscreen: (controller) {
           SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeLeft,
-            DeviceOrientation.landscapeRight,
           ]);
         },
         onExitFullscreen: (controller) {
@@ -26,7 +27,7 @@ class WebViewExampleState extends State<WebViewExample> {
         },
         onPageCommitVisible: (con, uri) {
           String url = uri.toString();
-          if (url.contains("62.182.83.93")) {
+          if (url.contains(link)) {
           } else {
             con.goBack();
           }
